@@ -28,6 +28,12 @@
 
 实验结果表明，Geode-GS 在多个具有挑战性的基准数据集（如 Mip-NeRF360、Deep Blending 和 Tanks & Temples）上实现了SOTA的渲染质量。更重要的是，我们的方法显著提升了**几何精度**，能够提取出**高保真、干净的表面网格**，使重建对象可以作为功能齐全的几何资产用于下游应用（如场景组合和编辑）。
 
+<p align="center">
+    <img src="assets/guocheng.png" alt="Geode-GS Pipeline Visualization" width="100%">
+    <em>我们的几何感知渲染管线可视化。从左到右、从上到下分别是：真值图、渲染图、渲染法线、深度法线、估计深度、深度衍生的法线、融合法线和边缘权重。</em>
+</p>
+
+
 ## ✨ 效果展示 (Results)
 
 ### 渲染质量对比 (Qualitative Rendering Comparison)
