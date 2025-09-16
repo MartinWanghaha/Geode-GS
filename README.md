@@ -34,25 +34,28 @@
 
 与当前SOTA方法（如 EDGS 和 PGSR）相比，Geode-GS 生成的渲染结果具有明显更少的伪影和更高的细节保真度。
 
-<img src="https://github.com/MartinWanghaha/Geode-GS/raw/main/duibi.png?raw=true" alt="Qualitative Comparison" width="100%">
+![Qualitative Comparison](./assets/duibi.png)
 
 ### 极限视角下的鲁棒性 (Robustness from Extreme Viewpoints)
 
 从新颖且具挑战性的视角观察时，Geode-GS 仍能保持场景结构和背景的完整性，而其他方法则出现严重的浮空伪影或几何扭曲。
 
-<img src="https://github.com/MartinWanghaha/Geode-GS/raw/main/jiduan.png?raw=true" alt="Extreme Viewpoints" width="100%">
+![Extreme Viewpoints](./assets/jiduan.png)
 
 ### 高保真网格提取 (High-Fidelity Mesh Extraction)
 
 Geode-GS 的高几何精度使得提取干净、细节丰富的表面网格成为可能，将3DGS从纯粹的渲染表示提升为功能齐全的几何资产。
 
-<img src="https://github.com/MartinWanghaha/Geode-GS/raw/main/mesh.png?raw=true" alt="Mesh Extraction" width="100%">
+![Mesh Extraction](./assets/mesh.png)
+
 
 ### 场景组合与编辑 (Scene Composition and Editing)
 
 我们可以自由地组合和排列从完全不同的捕获环境中重建的资产（例如长凳、自行车和桌子），构建一个全新的、逻辑上连贯的聚合场景。
 
-<img src="https://github.com/MartinWanghaha/Geode-GS/raw/main/3dm.png?raw=true" alt="Scene Composition" width="100%">
+![Scene Composition](./assets/3dm.png)
+
+
 
 ## 🚀 快速开始 (Getting Started)
 
