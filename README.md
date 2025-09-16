@@ -151,4 +151,4 @@ python metrics.py -m output/scene_name
 
 ## 致谢 (Acknowledgements)
 
-这项工作建立在 [3D Gaussian Splatting](https://github.com/graphdeco-inria/gaussian-splatting) 的杰出研究之上。我们感谢原作者的巨大贡献。我们的代码也部分参考了其他优秀的开源项目，在此一并表示感谢。
+这项工作建立在 [3D Gaussian Splatting](https://github.com/graphdeco-inria/gaussian-splatting) 的杰出研究之上。我们感谢原作者的巨大贡献。我们的代码也部分参考了其他优秀的开源项目，PGSRD(https://github.com/zju3dv/PGSR/tree/main)和EDGS(https://github.com/CompVis/EDGS)，在此一并表示感谢。
