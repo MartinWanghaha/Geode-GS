@@ -4,7 +4,7 @@
 # Geode-GS: 几何引导的密集三维高斯溅射 (Geometrically-Guided Dense 3D Gaussian Splatting)
 
 <p align="center">
-    ![Geode-GS Overview](./assets/pre.png)
+    <img src="https://github.com/MartinWanghaha/Geode-GS/assets/pre.png?raw=true" alt="Geode-GS Overview" width="90%">
 </p>
 <p align="center">
     <em>Geode-GS 框架概览。我们的方法集成了密集的几何初始化、几何感知的渲染管线和融合法线监督，以实现高保真的新视角合成和精确的表面重建。</em>
