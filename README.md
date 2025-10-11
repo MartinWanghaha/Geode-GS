@@ -10,11 +10,6 @@
     <em>Geode-GS 框架概览。我们的方法集成了密集的几何初始化、几何感知的渲染管线和融合法线监督，以实现高保真的新视角合成和精确的表面重建。</em>
 </p>
 
-<p align="center">
-  <a href="https://arxiv.org/abs/YOUR_ARXIV_ID_HERE">[📄 论文]</a> •
-  <a href="https://github.com/MartinWanghaha/Geode-GS">[💻 项目主页]</a> •
-  <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE">[📹 视频 (即将推出)]</a>
-</p>
 
 ## 📜 简介 (Introduction)
 
@@ -147,17 +142,3 @@ python metrics.py -m output/scene_name
 
 更多详细结果请参阅我们的论文。
 
-## 引用 (Citation)
-
-如果您在您的研究中使用了我们的工作，请引用：```bibtex
-@article{wang2025geodegs,
-    title={Geode-GS: Geometrically-Guided Dense 3D Gaussian Splatting},
-    author={Wang, Yinchu and Du, Songlin and Cheng, Ximeng and Lu, Xiaobo},
-    journal={arXiv preprint arXiv:XXXX.XXXXX},
-    year={2025}
-}
-```
-
-## 致谢 (Acknowledgements)
-
-这项工作建立在 [3D Gaussian Splatting](https://github.com/graphdeco-inria/gaussian-splatting) 的杰出研究之上。我们感谢原作者的巨大贡献。我们的代码也部分参考了其他优秀的开源项目，PGSRD(https://github.com/zju3dv/PGSR/tree/main)和EDGS(https://github.com/CompVis/EDGS)，在此一并表示感谢。
