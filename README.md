@@ -1,35 +1,3 @@
-# Geode-GS: Geometrically-Guided Dense 3D Gaussian Splatting
-
-<p align="center">
-    <img src="https://github.com/MartinWanghaha/Geode-GS/raw/main/assets/pre.png?raw=true" alt="Geode-GS Overview" width="100%">
-</p>
-<p align="center">
-    <em>Overview of the Geode-GS framework. Our method integrates dense geometric initialization, a geometry-aware rendering pipeline, and fused normal supervision to achieve high-fidelity novel view synthesis and accurate surface reconstruction.</em>
-</p>
-
-## 📜 Introduction
-
-3D Gaussian Splatting (3DGS) enables real-time, high-quality novel view synthesis through differentiable rasterization. However, its optimization is driven entirely by photometric losses on 2D images, which encourages the model to find “shortcut” solutions that fit the training views rather than recover physically correct geometry. This inherent limitation often leads to **surface artifacts**, **floaters**, and **holes in the reconstructed geometry**.
-
-To address these issues, we propose **Geode-GS**, a framework for **geometrically-guided dense 3D Gaussian Splatting**. Our method combines **geometric fidelity** and **photorealism** within a unified optimization objective. Our contributions include:
-
-- **📍 Dense Geometric Initialization:** We use dense feature matching and triangulation to generate an overcomplete set of geometrically accurate Gaussian primitives with global scene coverage in a single initialization stage, directly addressing the sparsity of the initial point cloud.
-- **📐 Geometry-Aware Rendering:** We design a rendering pipeline that produces per-pixel depth and surface normals, providing explicit spatial information for geometric supervision.
-- **💡 Fused Normal Supervision:** We introduce a novel fused normal supervision strategy. Filtering guided by normal priors produces high-quality, robust fused normal maps, which provide an additional geometric loss and address the limitations of photometric supervision alone.
-
-Experiments show that Geode-GS achieves state-of-the-art rendering quality on several challenging benchmarks, including Mip-NeRF 360, Deep Blending, and Tanks & Temples. More importantly, our method substantially improves **geometric accuracy**, enabling the extraction of **clean, high-fidelity surface meshes**. The reconstructed objects can thus serve as fully functional geometric assets for downstream applications such as scene composition and editing.
-
-<p align="center">
-    <img src="assets/guocheng.png" alt="Geode-GS Pipeline Visualization" width="100%">
-    <em>Visualization of our geometry-aware rendering pipeline. From left to right and top to bottom: ground-truth image, rendered image, rendered normals, depth normals, estimated depth, depth-derived normals, fused normals, and edge weights.</em>
-</p>
-
-## ✨ Results
-
-### Qualitative Rendering Comparison
-
-Compared with current state-of-the-art methods such as EDGS and PGSR, Geode-GS produces renderings with noticeably fewer artifacts and greater detail fidelity.
-
 ![Qualitative Comparison](./assets/duibi.png)
 
 ### Robustness from Extreme Viewpoints
@@ -94,3 +62,62 @@ Our method follows the same data structure as the original 3DGS. Process your da
 ├── input/
 │   ├── image1.png
 │   ├── image2.png
+│   └── ...
+├── sparse/0/
+│   ├── cameras.bin
+│   ├── images.bin
+│   └── points3D.bin
+└── ...
+```
+
+The datasets used in our experiments can be downloaded from [Mip-NeRF 360](https://jonbarron.info/mipnerf360/), [Tanks & Temples](https://www.tanksandtemples.org/), and [Deep Blending](https://github.com/google/deep-blending).
+
+### 3. Training
+
+Start training with the following command. Set `-s` to the path to your scene and use `-m` to specify the model output directory.
+
+```bash
+python train.py -s /path/to/your/scene -m output/scene_name
+```
+
+For example, to train on the `garden` scene from the Mip-NeRF 360 dataset:
+
+```bash
+python train.py -s /path/to/mipnerf360/garden -m output/garden
+```
+
+### 4. Pretrained Checkpoints
+
+Pretrained checkpoints are available for download:
+
+- **File name:** `ckpt`
+- **Download link:** [Baidu Netdisk](https://pan.baidu.com/s/1MTZHe-motYdtnR7Ky2xrEg?pwd=u5m5)
+- **Access code:** `u5m5`
+
+> **Note on evaluation metrics:** When evaluating the provided checkpoints, metrics such as PSNR, SSIM, and LPIPS may differ slightly from the values reported in the paper and the table below, but the results remain broadly consistent.
+
+### 5. Rendering & Evaluation
+
+After training, use `render.py` to render images from the test viewpoints and `metrics.py` to evaluate the results.
+
+```bash
+# Render
+python render.py -m output/scene_name
+
+# Evaluate
+python metrics.py -m output/scene_name
+```
+
+## 📈 Quantitative Results
+
+Our quantitative evaluation results on the Mip-NeRF 360 dataset are shown below. Geode-GS achieves substantial improvements in SSIM and LPIPS.
+
+| **Method** | **PSNR ↑** | **SSIM ↑** | **LPIPS ↓** |
+| :--- | :---: | :---: | :---: |
+| 3DGS | 27.24 | 0.803 | 0.246 |
+| Mip-Splatting | 27.97 | 0.838 | 0.179 |
+| EDGS | 28.06 | 0.840 | 0.174 |
+| 3DGS-MCMC | **28.15** | 0.842 | 0.176 |
+| **Geode-GS (Ours)** | 28.03 | **0.844** | **0.162** |
+
+Please refer to our paper for more detailed results.
