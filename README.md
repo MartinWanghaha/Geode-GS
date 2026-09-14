@@ -1,6 +1,3 @@
-
----
-
 # Geode-GS: 几何引导的密集三维高斯溅射 (Geometrically-Guided Dense 3D Gaussian Splatting)
 
 <p align="center">
@@ -9,7 +6,6 @@
 <p align="center">
     <em>Geode-GS 框架概览。我们的方法集成了密集的几何初始化、几何感知的渲染管线和融合法线监督，以实现高保真的新视角合成和精确的表面重建。</em>
 </p>
-
 
 ## 📜 简介 (Introduction)
 
@@ -27,7 +23,6 @@
     <img src="assets/guocheng.png" alt="Geode-GS Pipeline Visualization" width="100%">
     <em>我们的几何感知渲染管线可视化。从左到右、从上到下分别是：真值图、渲染图、渲染法线、深度法线、估计深度、深度衍生的法线、融合法线和边缘权重。</em>
 </p>
-
 
 ## ✨ 效果展示 (Results)
 
@@ -49,32 +44,32 @@ Geode-GS 的高几何精度使得提取干净、细节丰富的表面网格成�
 
 ![Mesh Extraction](./assets/mesh.png)
 
-
 ### 场景组合与编辑 (Scene Composition and Editing)
 
 我们可以自由地组合和排列从完全不同的捕获环境中重建的资产（例如长凳、自行车和桌子），构建一个全新的、逻辑上连贯的聚合场景。
 
 ![Scene Composition](./assets/3dm.png)
 
-
-
 ## 🚀 快速开始 (Getting Started)
 
 ### 1. 环境设置 (Environment Setup)
 
 首先，克隆本仓库及其子模块：
+
 ```bash
 git clone --recursive https://github.com/MartinWanghaha/Geode-GS.git
 cd Geode-GS
 ```
 
 我们建议使用 Conda 创建虚拟环境：
+
 ```bash
 conda create -n geode-gs python=3.9
 conda activate geode-gs
 ```
 
 然后，安装所需的依赖包。我们依赖于原始 3DGS 中的 `diff-gaussian-rasterization` 和 `simple-knn` 库。
+
 ```bash
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 pip install -r requirements.txt
@@ -93,7 +88,8 @@ cd ../..
 ### 2. 数据准备 (Data Preparation)
 
 我们的方法遵循与原始 3DGS 相同的数据结构。请使用 **COLMAP** 处理您的数据集以获取相机位姿。处理后的数据集应具有以下结构：
-```
+
+```text
 <scene_path>
 ├── input/
 │   ├── image1.png
@@ -105,21 +101,37 @@ cd ../..
 │   └── points3D.bin
 └── ...
 ```
+
 您可以从 [Mip-NeRF 360](https://jonbarron.info/mipnerf360/)、[Tanks & Temples](https://www.tanksandtemples.org/) 和 [Deep Blending](https://github.com/google/deep-blending) 下载实验所用的数据集。
 
 ### 3. 训练 (Training)
 
 使用以下命令开始训练。请将 `-s` 参数替换为您的场景路径，并使用 `-m` 指定模型输出目录。
+
 ```bash
-python train.py -s /path/to/your/scene -m output/scene_name```
+python train.py -s /path/to/your/scene -m output/scene_name
+```
+
 例如，训练 Mip-NeRF 360 数据集中的 `garden` 场景：
+
 ```bash
 python train.py -s /path/to/mipnerf360/garden -m output/garden
 ```
 
-### 4. 渲染与评估 (Rendering & Evaluation)
+### 4. 预训练检查点 (Pretrained Checkpoints)
+
+我们提供预训练检查点，供下载使用：
+
+- **文件名称：** `ckpt`
+- **下载链接：** [百度网盘](https://pan.baidu.com/s/1MTZHe-motYdtnR7Ky2xrEg?pwd=u5m5)
+- **提取码：** `u5m5`
+
+> **指标说明：** 使用所提供的检查点评估时，PSNR、SSIM 和 LPIPS 等指标可能与论文及下表报告的数值略有出入，但总体保持一致。
+
+### 5. 渲染与评估 (Rendering & Evaluation)
 
 训练完成后，您可以使用 `render.py` 脚本来渲染测试集视角的图像，并使用 `metrics.py` 进行评估。
+
 ```bash
 # 渲染
 python render.py -m output/scene_name
@@ -141,4 +153,3 @@ python metrics.py -m output/scene_name
 | **Geode-GS (Ours)** | 28.03 | **0.844** | **0.162** |
 
 更多详细结果请参阅我们的论文。
-
